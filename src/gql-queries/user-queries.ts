@@ -10,3 +10,17 @@ query getUsers {
     }
 }
 `;
+
+
+export const FIND_USERS = gql`
+query findusers($radius: Int!) {
+    findusers(args: {bound: $radius, lat1: 43.76417, long1: 11.25869}) {
+      user{
+        first_name
+        gender
+        id
+        last_name
+      }
+    }
+  }
+`;

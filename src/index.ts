@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { client } from "./clients/graphql-client";
 import { generateJWT } from "./auth/jwt";
-import { GET_USERS } from "./gql-queries/user-queries";
+import { FIND_USERS, GET_USERS } from "./gql-queries/user-queries";
 import { validJWTNeeded } from "./middlewares/auth"
 
 const app = express();
@@ -14,6 +14,16 @@ app.use(express.json());
 app.get("/users/list", validJWTNeeded, async (req: Request, res: Response) => {
     const result = await client.request(
         GET_USERS   
+      );
+      res.send(result);
+});
+
+
+app.get("/users/find", validJWTNeeded, async (req: Request, res: Response) => {
+    const result = await client.request(
+        FIND_USERS,{
+            radius: 1
+        }   
       );
       res.send(result);
 });

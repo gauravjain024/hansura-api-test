@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   postgres:
-    image: postgres
+    image: postgis/postgis
     restart: always
     environment:
       POSTGRES_PASSWORD: password
